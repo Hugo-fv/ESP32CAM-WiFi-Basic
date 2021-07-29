@@ -21,8 +21,8 @@
 #include <WiFi.h>  // Biblioteca para manejar el WiFi del ESP32CAM
 
 // Datos de Red
-const char* ssid = "********";  // Pon aquí el nombre de la red a la que deseas conectarte
-const char* password = "********";  // Escribe la contraseña de dicha red
+const char* ssid = "ARRIS-EA22";  // Pon aquí el nombre de la red a la que deseas conectarte
+const char* password = "220300sofia";  // Escribe la contraseña de dicha red
 
 // Objetos
 WiFiClient espClient; // Este objeto maneja las variables necesarias para una conexion WiFi
@@ -78,11 +78,13 @@ void loop() {
   timeNow = millis ();  // Seguimiento de tiempo
   if ((timeNow - timeLast > wait) && statusLed == 0){// Comprobar el encendido del flash
     digitalWrite (flashLedPin, HIGH);// Encender el flash
+    digitalWrite (statusLedPin, LOW); //Encender el flash de status
     statusLed = 1;//Indicar que el led flash se encuentra encendido
     timeLast = millis (); // Inicia el control de tiempo
   }
   if ((timeNow - timeLast > wait) && statusLed == 1){
     digitalWrite (flashLedPin, LOW);// Apagar Led el flash
+    digitalWrite (statusLedPin, HIGH);//Apagar Led de status
     statusLed = 0;//Indicar que el led flash se encuentra apagado
     timeLast = millis (); // Inicia el control de tiempo
   }
